@@ -1,0 +1,8 @@
+*
+!src
+!package.json
+!.npmrc
+!ormconfig.ts
+!scripts
+!dist
+!src
