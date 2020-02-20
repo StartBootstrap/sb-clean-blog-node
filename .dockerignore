@@ -3,6 +3,7 @@
 !package.json
 !.npmrc
 !ormconfig.ts
+!tsconfig.json
 !scripts
 !dist
 !src
