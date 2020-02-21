@@ -5,6 +5,7 @@
 /dist
 /tmp
 /out-tsc
+/_transpiled
 
 # dependencies
 /node_modules

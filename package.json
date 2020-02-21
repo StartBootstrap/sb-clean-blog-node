@@ -2,7 +2,7 @@
     "name": "sb-clean-blog-node",
     "version": "1.0.0",
     "description": "node server for sb-clean-blog-angular",
-    "main": "dist/app.js",
+    "main": "_transpiled/app.js",
     "scripts": {
         "build": "tsc -p src/tsconfig.app.json",
         "clean": "npm run ts-node scripts/clean",

@@ -3,7 +3,6 @@ EXPOSE 80
 
 WORKDIR /usr/app
 
-ENV NODE_PATH /usr/app/dist/lib
 ENV PORT 80
 
 ARG NODE_ENV=production

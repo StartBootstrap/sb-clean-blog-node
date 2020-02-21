@@ -14,7 +14,7 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
-        "outDir": "dist",
+        "outDir": "_transpiled",
         "paths": {
             "@app/*": [
                 "app/*"
@@ -43,7 +43,7 @@
     },
     "exclude": [
         "node_modules",
-        "dist",
+        "_transpiled",
         "_templates",
         "migrations/**/*"
     ]
