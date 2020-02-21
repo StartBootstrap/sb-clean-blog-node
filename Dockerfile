@@ -17,9 +17,9 @@ COPY package.json /usr/app/
 RUN npm install
 
 COPY ormconfig.ts /usr/app/
-COPY tsconfig.json /usr/app/
 COPY scripts /usr/app/scripts
 
-COPY src /usr/app/src
+COPY src/migrations /usr/app/src
+COPY build /usr/app/build
 
-CMD ["npm", "run", "start"]
+CMD ["node", "build/sb-clean-blog-node.js"]

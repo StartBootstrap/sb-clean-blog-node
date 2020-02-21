@@ -1,6 +1,6 @@
 import sh from 'shelljs';
 
-import { _handleShellResult } from '../shared';
+import { _handleShellResult } from '../_shared';
 
 process.env.NEW_DB = process.env.TYPE_ORM_DATABASE;
 process.env.TYPE_ORM_DATABASE = 'template1';

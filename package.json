@@ -24,8 +24,17 @@
         "lint": "tslint -p . -c tslint.json",
         "node:inspect-brk": "export TS_NODE_PROJECT=src/tsconfig.app.json && export TS_NODE_FILES=true && node --inspect-brk -r ts-node/register -r tsconfig-paths/register -r dotenv/config src/index.ts",
         "node:inspect": "export TS_NODE_PROJECT=src/tsconfig.app.json && export TS_NODE_FILES=true && node --inspect -r ts-node/register -r tsconfig-paths/register -r dotenv/config src/index.ts",
+        "serve:coverage": "static-server ./coverage/lcov-report 9754",
         "start": "npm run clean && nodemon -x 'npm run ts-node -- --files -P src/tsconfig.app.json src/index.ts'",
-        "ts-node": "ts-node -r tsconfig-paths/register -r dotenv/config"
+        "test:clear": "jest --clearCache",
+        "test:debug": "node --inspect-brk jest --runInBand",
+        "test:one": "jest --watch",
+        "test:watch-all": "jest --coverage --watchAll",
+        "test:watch": "jest --coverage --watch",
+        "test": "jest --coverage",
+        "ts-node": "ts-node -r tsconfig-paths/register -r dotenv/config",
+        "webpack:run": "node -r dotenv/config build/sb-clean-blog-node.js",
+        "webpack": "webpack"
     },
     "repository": {
         "type": "git",
@@ -36,6 +45,7 @@
     },
     "homepage": "https://github.com/StartBootstrap/sb-clean-blog-node#readme",
     "devDependencies": {
+        "@inip/static-server": "1.0.1",
         "@types/bcrypt": "3.0.0",
         "@types/concurrently": "5.1.0",
         "@types/jest": "25.1.2",
@@ -53,11 +63,15 @@
         "prettier": "1.19.1",
         "shelljs": "0.8.3",
         "ts-jest": "25.2.0",
+        "ts-loader": "6.2.1",
         "tsconfig-paths": "3.9.0",
         "tslint": "6.0.0",
         "tslint-config-prettier": "1.18.0",
         "tslint-plugin-prettier": "2.1.0",
-        "typescript": "3.7.5"
+        "typescript": "3.7.5",
+        "webpack": "4.41.6",
+        "webpack-cli": "3.3.11",
+        "webpack-node-externals": "1.7.2"
     },
     "dependencies": {
         "@inip/http-codes": "1.1.0",
