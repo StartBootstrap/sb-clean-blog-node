@@ -14,12 +14,6 @@ import fastify, { FastifyInstance } from 'fastify';
 
 import { handler, login } from './login';
 
-jest.mock('fastify');
-jest.mock('typeorm');
-jest.mock('bcrypt');
-jest.mock('@lib/jwt');
-jest.mock('@lib/orm/entity');
-
 describe('Login', () => {
     beforeEach(() => {
         mockFindOne.mockReset();
@@ -39,7 +33,7 @@ describe('Login', () => {
         );
         expect(mockFindOne).toHaveBeenCalled();
         expect(mockCompare).toHaveBeenCalled();
-        expect(returnValue).toEqual({ token: 'TEST_GENERATED_TOKEN' });
+        expect(returnValue).toEqual('TEST_GENERATE_TOKEN_RESPONSE');
     });
     it('should generateError if user is not found', async () => {
         try {

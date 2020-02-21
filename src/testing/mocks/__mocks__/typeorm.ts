@@ -1,6 +1,6 @@
 /* NOTE: Be sure to also export everything in the module.export also  */
 
-const autoMocks = jest.genMockFromModule('typeorm');
+// const autoMocks = jest.genMockFromModule<{}>('typeorm');
 
 // const { PrimaryGeneratedColumn, Entity, Column } = jest.requireActual('typeorm');
 const actualTypeorm = jest.requireActual('typeorm');

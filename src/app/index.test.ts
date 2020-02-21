@@ -4,7 +4,6 @@ import fastify from 'fastify';
 import { FastifyApp } from './index';
 import { routes } from './routes';
 
-jest.mock('fastify');
 jest.mock('./routes', () => {
     return {
         __esModule: true,

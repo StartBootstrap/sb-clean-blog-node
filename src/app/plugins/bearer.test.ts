@@ -11,13 +11,9 @@ import {
 import { mockFindOne } from '@mocks/typeorm';
 import { TestDecodedToken } from '@start-bootstrap/sb-clean-blog-shared-types';
 import { TestUser } from '@testing/objects';
-import { FastifyInstance } from 'fastify';
+import { FastifyInstance, FastifyRequest } from 'fastify';
 
 import { bearerHook, bearerPlugin } from './bearer';
-
-jest.mock('typeorm');
-jest.mock('@lib/jwt');
-jest.mock('@lib/orm/entity');
 
 describe('Plugins bearer', () => {
     beforeEach(() => {
@@ -116,7 +112,7 @@ describe('Plugins bearer', () => {
         const testUser = new TestUser();
         mockFindOne.mockImplementation(() => testUser);
         (<jest.Mock>validateToken).mockImplementation(() => new TestDecodedToken());
-        const request = {
+        const request = <FastifyRequest>{
             ...requestMock,
             headers: {
                 authorization: 'bearer 123',
@@ -128,6 +124,7 @@ describe('Plugins bearer', () => {
             replyMock,
             () => {}
         );
+
         expect(request.user).toEqual(testUser);
     });
 });

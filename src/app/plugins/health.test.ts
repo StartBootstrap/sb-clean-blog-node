@@ -3,8 +3,6 @@ import fastify, { FastifyInstance } from 'fastify';
 
 import { handler, health } from './health';
 
-jest.mock('fastify');
-
 describe('Plugin health test', () => {
     it('should create health route', () => {
         health(fastify(), {}, () => {});
