@@ -1,5 +1,7 @@
+import { Post } from './post';
 import { User } from './user';
 
-export default [User];
+export default [User, Post];
 
 export * from './user';
+export * from './post';

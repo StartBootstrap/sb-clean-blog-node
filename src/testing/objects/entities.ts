@@ -1,5 +1,5 @@
-import { User } from '@lib/orm/entity';
-import { ResultsUser } from '@start-bootstrap/sb-clean-blog-shared-types';
+import { Post, User } from '@lib/orm/entity';
+import { ResultsPost, ResultsUser } from '@start-bootstrap/sb-clean-blog-shared-types';
 
 export class TestUser implements User {
     id = '00000000-0000-0000-0000-000000000000';
@@ -16,6 +16,30 @@ export class TestUser implements User {
             firstName: this.firstName,
             lastName: this.lastName,
             email: this.email,
+        };
+    }
+}
+
+export class TestPost implements Post {
+    id = '00000000-0000-0000-0000-000000000000';
+    slug = 'TEST_SLUG';
+    backgroundImage = 'TEST_BACKGROUND_IMAGE';
+    heading = 'TEST_HEADING';
+    subHeading = 'TEST_SUB_HEADING';
+    meta = 'TEST_META';
+    body = 'TEST_BODY';
+    createdAt = new Date();
+    updatedAt = new Date();
+    version = 0;
+    toResultsPost(): ResultsPost {
+        return {
+            id: this.id,
+            slug: this.slug,
+            backgroundImage: this.backgroundImage,
+            heading: this.heading,
+            subHeading: this.subHeading,
+            meta: this.meta,
+            body: this.body,
         };
     }
 }
