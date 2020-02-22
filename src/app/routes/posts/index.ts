@@ -7,7 +7,7 @@ import { postsDelete } from './posts-delete';
 import { postsRead } from './posts-read';
 import { postsUpdate } from './posts-update';
 
-export const blog: fastify.RoutePlugin = async function(instance, options): Promise<void> {
+export const posts: fastify.RoutePlugin = async function(instance, options): Promise<void> {
     instance.register(health);
     instance.register(postsAll);
     instance.register(postsCreate);
