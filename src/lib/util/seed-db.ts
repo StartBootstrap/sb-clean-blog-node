@@ -1,5 +1,7 @@
+import config from '@lib/config';
 import { initORM } from '@lib/orm';
 import { User } from '@lib/orm/entity';
+import bcrypt from 'bcrypt';
 import chalk from 'chalk';
 import { getConnection } from 'typeorm';
 
@@ -20,7 +22,7 @@ export const seedDB = async (rootPassword: string, createConnection = false) => 
         const createdRootUser = await entityManager.save(
             entityManager.create(User, {
                 ...rootUser,
-                passwordHash: rootPassword,
+                passwordHash: await bcrypt.hash(rootPassword, config.auth.saltRounds),
             })
         );
         console.log(chalk.green('INFO: root@root User Created'));
