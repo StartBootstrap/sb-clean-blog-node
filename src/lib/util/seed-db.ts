@@ -20,7 +20,7 @@ export const seedDB = async (rootPassword: string, createConnection = false) => 
     }
     const entityManager = getConnection().manager;
 
-    // await _seedUser(entityManager, rootPassword);
+    await _seedUser(entityManager, rootPassword);
     await _seedPosts(entityManager);
 };
 
