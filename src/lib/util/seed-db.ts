@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import chalk from 'chalk';
 import { paramCase } from 'change-case';
 import { LoremIpsum } from 'lorem-ipsum';
+import moment from 'moment';
 import pLimit from 'p-limit';
 import { EntityManager, getConnection } from 'typeorm';
 
@@ -54,8 +55,10 @@ async function _seedPosts(entityManager: EntityManager) {
                 backgroundImage: 'url("assets/img/post-bg.jpg")',
                 heading: lorem.generateSentences(1),
                 subHeading: lorem.generateSentences(1),
-                meta: lorem.generateSentences(1),
                 body: lorem.generateParagraphs(7),
+                createdAt: moment()
+                    .subtract(2 * i, 'days')
+                    .format(),
             })
         );
     }
@@ -63,7 +66,6 @@ async function _seedPosts(entityManager: EntityManager) {
     try {
         const createdPosts = await Promise.all(promises);
         const savedPosts = await entityManager.save(entityManager.create(Post, createdPosts));
-
         console.log(chalk.blue(JSON.stringify(savedPosts, null, 4)));
     } catch (error) {
         console.log(error);

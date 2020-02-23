@@ -1,13 +1,6 @@
 import { ResultsPost } from '@start-bootstrap/sb-clean-blog-shared-types';
-import {
-    Column,
-    CreateDateColumn,
-    Entity,
-    Index,
-    PrimaryGeneratedColumn,
-    UpdateDateColumn,
-    VersionColumn,
-} from 'typeorm';
+import moment from 'moment';
+import { Column, Entity, Index, PrimaryGeneratedColumn, VersionColumn } from 'typeorm';
 
 @Entity()
 export class Post {
@@ -27,16 +20,20 @@ export class Post {
     @Column()
     subHeading!: string;
 
-    @Column()
+    @Column({ nullable: true })
     meta!: string;
 
     @Column('text')
     body!: string;
 
-    @CreateDateColumn()
+    @Column({
+        default: () => 'NOW()',
+    })
     createdAt!: Date;
 
-    @UpdateDateColumn()
+    @Column({
+        default: () => 'NOW()',
+    })
     updatedAt!: Date;
 
     @VersionColumn()
@@ -49,7 +46,7 @@ export class Post {
             backgroundImage: this.backgroundImage,
             heading: this.heading,
             subHeading: this.subHeading,
-            meta: this.meta,
+            meta: this.meta ? this.meta : moment(this.createdAt).format('MMMM D, YYYY'),
             body: this.body,
         };
     }
