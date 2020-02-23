@@ -1,24 +1,24 @@
 import httpCodes from '@inip/http-codes';
 import { mockGenerateError, requestMock } from '@mocks/fastify';
 import { mockFindOne } from '@mocks/typeorm';
-import { TestUser } from '@testing/objects';
+import { TestPost } from '@testing/objects';
 
-import { findUser } from './users';
+import { findPost } from './posts';
 
-describe('Users Shared', () => {
-    describe('findUser', () => {
+describe('Posts Shared', () => {
+    describe('findPost', () => {
         beforeEach(() => {
             mockFindOne.mockReset();
         });
-        it('should return the found user', async () => {
-            const testUser = new TestUser();
-            mockFindOne.mockImplementation(() => testUser);
-            const returnValue = await findUser(requestMock, '00000000-0000-0000-0000-000000000001');
-            expect(returnValue).toBe(testUser);
+        it('should return the found post', async () => {
+            const testPost = new TestPost();
+            mockFindOne.mockImplementation(() => testPost);
+            const returnValue = await findPost(requestMock, '00000000-0000-0000-0000-000000000001');
+            expect(returnValue).toBe(testPost);
         });
-        it('should error if the user does not exist', async () => {
+        it('should error if the post does not exist', async () => {
             try {
-                const returnValue = await findUser(
+                const returnValue = await findPost(
                     requestMock,
                     '00000000-0000-0000-0000-000000000001'
                 );
@@ -29,13 +29,13 @@ describe('Users Shared', () => {
                 );
             }
         });
-        it('should catch errors when trying to find user', async () => {
+        it('should catch errors when trying to find post', async () => {
             const thrownError = new Error('TEST_ERROR');
             mockFindOne.mockImplementation(() => {
                 throw thrownError;
             });
             try {
-                const returnValue = await findUser(
+                const returnValue = await findPost(
                     requestMock,
                     '00000000-0000-0000-0000-000000000001'
                 );

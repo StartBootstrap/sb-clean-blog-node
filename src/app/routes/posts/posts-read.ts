@@ -1,5 +1,10 @@
-import { findPost } from '@app/routes/_shared/posts';
-import { ReadPostParams, ResultsPost } from '@start-bootstrap/sb-clean-blog-shared-types';
+import { findPost, findPostBySlug } from '@app/routes/_shared/posts';
+import { Post } from '@lib/orm/entity';
+import {
+    ReadPostParams,
+    ReadPostQuery,
+    ResultsPost,
+} from '@start-bootstrap/sb-clean-blog-shared-types';
 import fastify from 'fastify';
 
 export const postsRead: fastify.RoutePlugin = async function(instance, options): Promise<void> {
@@ -15,8 +20,16 @@ export const handler: fastify.RequestHandlerWithParams<ReadPostParams> = async f
     request,
     reply
 ): Promise<ResultsPost> {
+    const readPostQuery: ReadPostQuery = request.query as ReadPostQuery;
     const readPostParams: ReadPostParams = request.params;
-    const foundPost = await findPost(request, readPostParams.id);
+
+    let foundPost: Post;
+
+    if (readPostQuery.findBy === 'slug') {
+        foundPost = await findPostBySlug(request, readPostParams.id);
+    } else {
+        foundPost = await findPost(request, readPostParams.id);
+    }
 
     return foundPost.toResultsPost();
 };

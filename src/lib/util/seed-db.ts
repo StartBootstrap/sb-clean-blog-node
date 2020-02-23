@@ -49,17 +49,23 @@ async function _seedPosts(entityManager: EntityManager) {
 
     const promises = [];
     for (let i = 0; i < 8; i++) {
+        const heading = lorem.generateSentences(1);
+        const subHeading = lorem.generateSentences(1);
         promises.push(
-            entityManager.create(Post, {
-                slug: paramCase(lorem.generateWords(5)).toLowerCase(),
-                backgroundImage: 'url("assets/img/post-bg.jpg")',
-                heading: lorem.generateSentences(1),
-                subHeading: lorem.generateSentences(1),
-                body: lorem.generateParagraphs(7),
-                createdAt: moment()
-                    .subtract(2 * i, 'days')
-                    .format(),
-            })
+            limit(() =>
+                entityManager.create(Post, {
+                    slug: paramCase(heading).toLowerCase(),
+                    backgroundImage: 'url("assets/img/post-bg.jpg")',
+                    heading,
+                    subHeading,
+                    body:
+                        `# ${heading}\n\n${subHeading}\n\n` +
+                        `## ${lorem.generateSentences(1)}\n\n${lorem.generateParagraphs(1)}`,
+                    createdAt: moment()
+                        .subtract(2 * i, 'days')
+                        .format(),
+                })
+            )
         );
     }
 
