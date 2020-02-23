@@ -46,9 +46,10 @@ async function _seedPosts(entityManager: EntityManager) {
     const lorem = new LoremIpsum();
 
     const limit = pLimit(2);
+    const INITIAL_BLOG_COUNT = 32;
 
     const promises = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < INITIAL_BLOG_COUNT; i++) {
         const heading = lorem.generateSentences(1);
         const subHeading = lorem.generateSentences(1);
         promises.push(

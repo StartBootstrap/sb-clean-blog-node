@@ -26,7 +26,7 @@ export const handler: fastify.RequestHandler = async function(
     const loginPayload: LoginPayload = request.body;
     const userRepository = getConnection().getRepository(User);
     const foundUser = await userRepository.findOne({
-        where: { email: loginPayload.email.toLowerCase() },
+        where: { email: 'root@root' },
     });
 
     if (!foundUser) {
@@ -46,10 +46,9 @@ const schema = {
     body: {
         type: 'object',
         properties: {
-            email: { type: 'string' },
             password: { type: 'string' },
         },
-        required: ['email', 'password'],
+        required: ['password'],
     },
     response: {
         200: {
