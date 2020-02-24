@@ -25,8 +25,13 @@ export const handler: fastify.RequestHandler = async function(
     const createPostPayload: CreatePostPayload = request.body;
     const postRepository = getConnection().getRepository(Post);
     const entityManager = getConnection().manager;
+
+    const slug = createPostPayload.slug
+        ? paramCase(createPostPayload.slug).toLowerCase()
+        : paramCase(createPostPayload.heading).toLowerCase();
+
     const existingSlug = await postRepository.findOne({
-        where: { slug: createPostPayload.slug.toLowerCase() },
+        where: { slug },
     });
 
     if (existingSlug) {
@@ -38,7 +43,7 @@ export const handler: fastify.RequestHandler = async function(
     try {
         createdPost = await entityManager.save(
             entityManager.create(Post, {
-                slug: paramCase(createPostPayload.slug).toLowerCase(),
+                slug,
                 backgroundImage: createPostPayload.backgroundImage,
                 heading: createPostPayload.heading,
                 subHeading: createPostPayload.subHeading,

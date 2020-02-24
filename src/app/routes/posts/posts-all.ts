@@ -17,7 +17,11 @@ export const handler: fastify.RequestHandler = async function(
     reply
 ): Promise<ResultsPost[]> {
     const postRepository = getConnection().getRepository(Post);
-    const posts = await postRepository.find();
+    const posts = await postRepository.find({
+        order: {
+            createdAt: 'DESC',
+        },
+    });
 
     return posts.map(post => post.toResultsPost());
 };
