@@ -44,7 +44,9 @@ export const handler: fastify.RequestHandler = async function(
         createdPost = await entityManager.save(
             entityManager.create(Post, {
                 slug,
-                backgroundImage: createPostPayload.backgroundImage,
+                backgroundImage: createPostPayload.backgroundImage
+                    ? `url("${createPostPayload.backgroundImage}")`
+                    : undefined,
                 heading: createPostPayload.heading,
                 subHeading: createPostPayload.subHeading,
                 meta: createPostPayload.meta,
