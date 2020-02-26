@@ -73,7 +73,7 @@ This command drops the current database then recreates it, runs all migrations,
 and finally seeds the db with the root user.
 
 ```bash
-npm run db:reset # See below if you have issues with this command
+npm run db:reset # See the next command if you have issues with this command
 ```
 
 _Note: If you receive an error `function uuid_generate_v4() does not exist` then run the command:_
@@ -82,7 +82,8 @@ _Note: If you receive an error `function uuid_generate_v4() does not exist` then
 npm run db:uuid
 ```
 
-This will add the extension `uuid-ossp` to the template1 databse
+This will add the extension `uuid-ossp` to the template1 databse.
+You will then need to run `npm run db:reset` again
 
 ### 4) Start the server
 

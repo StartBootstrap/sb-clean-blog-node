@@ -44,6 +44,7 @@
     "homepage": "https://github.com/StartBootstrap/sb-clean-blog-node#readme",
     "devDependencies": {
         "@inip/static-server": "1.0.1",
+        "@start-bootstrap/sb-clean-blog-shared-types": "1.0.0",
         "@types/bcrypt": "3.0.0",
         "@types/concurrently": "5.1.0",
         "@types/jest": "25.1.2",
