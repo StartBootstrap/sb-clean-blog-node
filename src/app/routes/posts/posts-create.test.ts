@@ -7,17 +7,15 @@ import {
     replyMock,
     requestMock,
 } from '@mocks/fastify';
-import { mockEMFindByIds, mockEMFindOne, mockEMSave, mockFindOne } from '@mocks/typeorm';
+import { mockEMCreate, mockEMSave, mockFindOne } from '@mocks/typeorm';
 import {
     TestCreatePostPayload,
     TestResultsPost,
 } from '@start-bootstrap/sb-clean-blog-shared-types';
-import { TestPost } from '@testing/objects';
+import { TestPost, TestPostCreate } from '@testing/objects';
 import fastify, { FastifyInstance } from 'fastify';
 
 import { handler, postsCreate } from './posts-create';
-
-jest.mock('fastify');
 
 describe('PostsCreate', () => {
     beforeEach(() => {
@@ -37,10 +35,34 @@ describe('PostsCreate', () => {
             replyMock
         );
         expect(mockFindOne).toHaveBeenCalled();
-        expect(mockEMFindByIds).toHaveBeenCalled();
-        expect(mockEMFindOne).toHaveBeenCalledTimes(2);
         expect(mockCode).toHaveBeenCalledWith(201);
-        expect(returnValue).toEqual(new TestResultsPost());
+        expect(returnValue).toEqual({ ...new TestResultsPost() });
+    });
+    it('should use heading if slug is not passed', async () => {
+        mockEMSave.mockImplementation(() => new TestPost());
+        requestMock.body.slug = undefined;
+        const returnValue = await handler.call(
+            <FastifyInstance>(<unknown>mockFastifyInstance),
+            requestMock,
+            replyMock
+        );
+        expect(mockEMCreate).toHaveBeenCalledWith(undefined, {
+            ...new TestPostCreate(),
+            slug: 'test-heading',
+        });
+    });
+    it('should use undefined for backgroundImage if not passed', async () => {
+        mockEMSave.mockImplementation(() => new TestPost());
+        requestMock.body.backgroundImage = undefined;
+        const returnValue = await handler.call(
+            <FastifyInstance>(<unknown>mockFastifyInstance),
+            requestMock,
+            replyMock
+        );
+        expect(mockEMCreate).toHaveBeenCalledWith(undefined, {
+            ...new TestPostCreate(),
+            backgroundImage: undefined,
+        });
     });
     it('should error if the email already exists', async () => {
         mockFindOne.mockImplementation(() => new TestPost());

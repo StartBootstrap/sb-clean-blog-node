@@ -21,6 +21,7 @@ module.exports = {
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
         '!<rootDir>/src/lib/orm/entity/**/*.ts',
+        '!<rootDir>/src/testing/**/*.ts',
         '!<rootDir>/src/migrations/**/*.ts'
     ],
 };

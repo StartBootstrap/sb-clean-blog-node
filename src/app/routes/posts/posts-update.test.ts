@@ -17,8 +17,6 @@ import fastify, { FastifyInstance, FastifyRequestWithParams } from 'fastify';
 
 import { handler, postsUpdate } from './posts-update';
 
-jest.mock('fastify');
-
 describe('PostsUpdate', () => {
     beforeEach(() => {
         mockFindOne.mockReset();
@@ -43,7 +41,7 @@ describe('PostsUpdate', () => {
             replyMock
         );
         expect(mockFindOne).toHaveBeenCalled();
-        expect(returnValue).toEqual(new TestUpdatePostPayload());
+        expect(returnValue).toEqual(new TestPost().toResultsPost());
     });
     it('should catch errors when trying to update post', async () => {
         const thrownError = new Error('TEST_ERROR');

@@ -17,8 +17,6 @@ import fastify, { FastifyInstance, FastifyRequestWithParams } from 'fastify';
 
 import { handler, postsDelete } from './posts-delete';
 
-jest.mock('fastify');
-
 describe('PostsDelete', () => {
     beforeEach(() => {
         mockFindOne.mockReset();

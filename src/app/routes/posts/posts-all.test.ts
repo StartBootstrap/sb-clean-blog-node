@@ -5,8 +5,6 @@ import fastify, { FastifyInstance } from 'fastify';
 
 import { handler, postsAll } from './posts-all';
 
-jest.mock('fastify');
-
 describe('PostsAll', () => {
     beforeEach(() => {});
 

@@ -5,8 +5,6 @@
 // const { PrimaryGeneratedColumn, Entity, Column } = jest.requireActual('typeorm');
 const actualTypeorm = jest.requireActual('typeorm');
 
-// console.log(actualTypeorm.ManyToOne);
-
 export const mockFind = jest.fn(() => {});
 export const mockFindOne = jest.fn(() => {});
 export const mockSave = jest.fn(() => {});
@@ -24,7 +22,7 @@ export const mockGetRepository = jest.fn(() => ({
 
 export const mockCreateConnection = jest.fn(() => {});
 
-const mockGetConnection = jest.fn(() => ({
+export const mockGetConnection = jest.fn(() => ({
     getRepository: mockGetRepository,
     manager: {
         findByIds: mockEMFindByIds,
@@ -33,8 +31,12 @@ const mockGetConnection = jest.fn(() => ({
         create: mockEMCreate,
         remove: mockEMRemove,
     },
+    synchronize: mockSynchronize,
 }));
 
+export const mockSynchronize = jest.fn(() => {});
+
+// Need to also export here
 module.exports = {
     // ...autoMocks,
     ...actualTypeorm,
@@ -49,4 +51,7 @@ module.exports = {
     mockEMCreate,
     mockEMRemove,
     mockGetRepository,
+    mockCreateConnection,
+    mockGetConnection,
+    mockSynchronize,
 };

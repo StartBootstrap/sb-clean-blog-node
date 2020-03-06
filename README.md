@@ -69,8 +69,13 @@ npm install
 
 ### 3) Reset the database
 
-This command drops the current database then recreates it, runs all migrations,
-and finally seeds the db with the root user.
+This command:
+
+- drops the current database
+- recreates the databse
+- runs all migrations
+- creates the root user
+- seeds the db with random posts
 
 ```bash
 npm run db:reset # See the next command if you have issues with this command
