@@ -42,7 +42,15 @@ To set up a new user in postgres type the following in terminal (It will prompt 
 createuser newuser --pwprompt --createdb # newuser can be any username you choose
 ```
 
-Remember the password you use here. You will need to add it into `.env`
+#### _NOTE: Remember the username password you use here. You will need to add it into `.env`_
+
+Test that you can log in to postgres:
+
+```bash
+psql -U newuser template1
+```
+
+Common postgres commands can be found in: [NOTES/POSTGRES.md](NOTES/POSTGRES.md)
 
 ## Quick Start
 
@@ -98,14 +106,7 @@ npm start
 
 You should be able to hit <http://localhost:8200/api/latest/health>
 
-## inip !![MIGRATE THIS TO NG-GENERATORS?]!!
-
-inip node router -n test -p src/lib/routes/routers
-inip node route -n test -p src/lib/routes/routers/test
-
 ## Tests
-
-Tests are divided into unit tests and route tests.
 
 Unit Tests are named `*.test.ts` and are located in the same directory as the file they are testing.
 
@@ -133,7 +134,7 @@ npm run serve:coverage
 
 ```bash
 npm run cli -- -h
-npm run db:migration:generate -- -n Initial
+npm run db:migration:generate -- -n my-migration
 npm run db:migration:run
 ```
 
@@ -157,7 +158,15 @@ npm run lint:fix
 npm run lint:check
 ```
 
-## Debug tsconfig
+## Debug 
+
+### To run in debug mode
+
+```bash
+npm run debug
+```
+
+### To debug tsonfig
 
 ```bash
 node_modules/.bin/tsc --showConfig -p ./src/tsconfig.app.json

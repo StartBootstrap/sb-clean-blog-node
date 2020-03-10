@@ -3,10 +3,8 @@
 __NOTE: DO NOT FORGET SEMI-COLONS WHEN TYPING SQL COMMAND IN THE CLI!__
 
 ```bash
-
 # create a user with the psql installed createuser command
-## -d gives the new user ability to creat databases
-createuser someuser -d
+createuser someuser --pwprompt --createdb
 
 # cli
 psql
@@ -35,5 +33,4 @@ truncate table "user";
 
 # drop table
 drop table "user"
-
 ```
