@@ -1,4 +1,6 @@
-# SBPro Clean Blog Node
+# SB Clean Blog Node
+
+[![Build Status](https://travis-ci.org/StartBootstrap/sb-clean-blog-node.svg?branch=master)](https://travis-ci.org/StartBootstrap/sb-clean-blog-node)
 
 ## Prerequisites
 
