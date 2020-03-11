@@ -16,7 +16,10 @@ export const mockReady = jest.fn(cb => {
 export const mockRegister = jest.fn((plugin: unknown, options: unknown) => {});
 export const mockRoute = jest.fn((options: unknown) => {});
 
+const autoMocks = jest.genMockFromModule<{}>('fastify');
+
 export const mockFastifyInstance = {
+    ...autoMocks,
     addHook: mockAddHook,
     decorate: mockDecorate,
     decorateReply: mockDecorateReply,
@@ -30,6 +33,7 @@ export const mockFastifyInstance = {
 };
 
 export default jest.fn(() => mockFastifyInstance);
+// export default jest.fn().mockImplementation(() => mockFastifyInstance);
 
 export const mockGenerateError = jest.fn(() => {});
 

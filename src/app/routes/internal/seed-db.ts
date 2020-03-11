@@ -3,9 +3,7 @@ import { seedDB } from '@lib/util';
 import fastify from 'fastify';
 import { getConnection } from 'typeorm';
 
-// import { handler as createGang } from './create-gang';
-
-export const seedGang: fastify.RoutePlugin = async function(instance, options): Promise<void> {
+export const seedDBRoute: fastify.RoutePlugin = async function(instance, options): Promise<void> {
     instance.route({
         method: 'POST',
         url: '/seed-gang',
@@ -18,8 +16,6 @@ export const handler: fastify.RequestHandler = async function(request, reply): P
     await getConnection().synchronize(true);
     await seedDB(<string>process.env.DB_ROOT_USER_PASSWORD);
 
-    // await createGang.call(this, request, reply);
-
     reply.code(httpCodes.NO_CONTENT);
     return;
 };
@@ -27,7 +23,7 @@ export const handler: fastify.RequestHandler = async function(request, reply): P
 const schema = {
     response: {
         204: {
-            description: 'Successfully Reset DB',
+            description: 'Successfully Seeded the DB',
             type: 'null',
         },
     },

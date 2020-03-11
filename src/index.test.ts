@@ -1,15 +1,15 @@
 import { FastifyApp } from '@app/index';
 import { initORM } from '@lib/orm';
 
-import Main from './index';
+import main from './index';
 
 jest.mock('@lib/orm');
 jest.mock('@app/index');
 
-test('Main should init', () => {
-    // Appears that this loads the module, calling the Main.init() so we do not need to.
-    const main = new Main();
+test('Main should init', async () => {
+    await main();
 
-    expect(initORM).toHaveBeenCalledTimes(1);
-    expect(<jest.Mock>FastifyApp).toHaveBeenCalledTimes(1);
+    // Already each called once when we imported
+    expect(initORM).toHaveBeenCalledTimes(2);
+    expect(<jest.Mock>FastifyApp).toHaveBeenCalledTimes(2);
 });

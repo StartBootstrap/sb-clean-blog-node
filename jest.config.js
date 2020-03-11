@@ -18,5 +18,18 @@ module.exports = {
         '^@testing/(.*)$': '<rootDir>/src/testing/$1',
         '^@mocks/(.*)$': '<rootDir>/src/testing/mocks/__mocks__/$1',
     },
-    collectCoverageFrom: ['src/**/*.ts', '!src/lib/orm/entity/**/*.ts', '!src/migrations/**/*.ts'],
+    collectCoverageFrom: [
+        '<rootDir>/src/**/*.ts',
+        '!<rootDir>/src/lib/orm/entity/**/*.ts',
+        '!<rootDir>/src/testing/**/*.ts',
+        '!<rootDir>/src/migrations/**/*.ts'
+    ],
+    coverageThreshold: {
+        "global": {
+            "branches": 100,
+            "functions": 100,
+            "lines": 100,
+            "statements": 100
+        }
+    },
 };

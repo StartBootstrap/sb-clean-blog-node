@@ -3,6 +3,6 @@
     "compilerOptions": {
         "types": ["jest", "node", "reflect-metadata"]
     },
-    "exclude": ["lib/orm/entity/**/*"]
-    // "include": ["testing/**/*", "**/*.d.ts", "**/*.test.ts"]
+    "exclude": ["lib/orm/entity/**/*"],
+    "include": ["testing/**/*", "**/*.d.ts", "**/*.test.ts", "**/*.ts"]
 }

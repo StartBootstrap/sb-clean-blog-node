@@ -1,4 +1,6 @@
-# SBPro Clean Blog Node
+# SB Clean Blog Node
+
+[![Build Status](https://travis-ci.org/StartBootstrap/sb-clean-blog-node.svg?branch=master)](https://travis-ci.org/StartBootstrap/sb-clean-blog-node)
 
 ## Prerequisites
 
@@ -42,7 +44,15 @@ To set up a new user in postgres type the following in terminal (It will prompt 
 createuser newuser --pwprompt --createdb # newuser can be any username you choose
 ```
 
-Remember the password you use here. You will need to add it into `.env`
+#### _NOTE: Remember the username password you use here. You will need to add it into `.env`_
+
+Test that you can log in to postgres:
+
+```bash
+psql -U newuser template1
+```
+
+Common postgres commands can be found in: [NOTES/POSTGRES.md](NOTES/POSTGRES.md)
 
 ## Quick Start
 
@@ -69,11 +79,16 @@ npm install
 
 ### 3) Reset the database
 
-This command drops the current database then recreates it, runs all migrations,
-and finally seeds the db with the root user.
+This command:
+
+- drops the current database
+- recreates the databse
+- runs all migrations
+- creates the root user
+- seeds the db with random posts
 
 ```bash
-npm run db:reset # See below if you have issues with this command
+npm run db:reset # See the next command if you have issues with this command
 ```
 
 _Note: If you receive an error `function uuid_generate_v4() does not exist` then run the command:_
@@ -82,7 +97,8 @@ _Note: If you receive an error `function uuid_generate_v4() does not exist` then
 npm run db:uuid
 ```
 
-This will add the extension `uuid-ossp` to the template1 databse
+This will add the extension `uuid-ossp` to the template1 databse.
+You will then need to run `npm run db:reset` again
 
 ### 4) Start the server
 
@@ -92,14 +108,7 @@ npm start
 
 You should be able to hit <http://localhost:8200/api/latest/health>
 
-## inip !![MIGRATE THIS TO NG-GENERATORS?]!!
-
-inip node router -n test -p src/lib/routes/routers
-inip node route -n test -p src/lib/routes/routers/test
-
 ## Tests
-
-Tests are divided into unit tests and route tests.
 
 Unit Tests are named `*.test.ts` and are located in the same directory as the file they are testing.
 
@@ -127,7 +136,7 @@ npm run serve:coverage
 
 ```bash
 npm run cli -- -h
-npm run db:migration:generate -- -n Initial
+npm run db:migration:generate -- -n my-migration
 npm run db:migration:run
 ```
 
@@ -151,7 +160,15 @@ npm run lint:fix
 npm run lint:check
 ```
 
-## Debug tsconfig
+## Debug 
+
+### To run in debug mode
+
+```bash
+npm run debug
+```
+
+### To debug tsonfig
 
 ```bash
 node_modules/.bin/tsc --showConfig -p ./src/tsconfig.app.json
