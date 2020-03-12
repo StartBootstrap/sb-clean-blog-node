@@ -14,6 +14,7 @@ export const postsCreate: fastify.RoutePlugin = async function(instance, options
         method: 'POST',
         url: '/',
         schema,
+        preHandler: [instance.isRoot],
         handler,
     });
 };

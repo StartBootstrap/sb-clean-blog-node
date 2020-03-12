@@ -5,6 +5,7 @@ import { createConnection } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 export const initORM = async (connectionOverrides?: Partial<PostgresConnectionOptions>) => {
+    console.log('### INFO: Creating Postgres Connection for typeORM');
     try {
         const connection = await createConnection(<PostgresConnectionOptions>{
             ...config.typeORM,

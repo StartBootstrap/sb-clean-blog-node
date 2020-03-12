@@ -12,6 +12,7 @@ export const postsDelete: fastify.RoutePlugin = async function(instance, options
         method: 'DELETE',
         url: '/:id',
         schema,
+        preHandler: [instance.isRoot],
         handler,
     });
 };

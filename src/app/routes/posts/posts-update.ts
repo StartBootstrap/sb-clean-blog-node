@@ -15,6 +15,7 @@ export const postsUpdate: fastify.RoutePlugin = async function(instance, options
         method: 'PUT',
         url: '/:id',
         schema,
+        preHandler: [instance.isRoot],
         handler,
     });
 };
