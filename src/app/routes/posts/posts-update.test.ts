@@ -41,7 +41,30 @@ describe('PostsUpdate', () => {
             replyMock
         );
         expect(mockFindOne).toHaveBeenCalled();
-        expect(returnValue).toEqual(new TestPost().toResultsPost());
+
+        expect(returnValue).toEqual({
+            ...new TestPost().toResultsPost(),
+            backgroundImage: 'url("TEST_BACKGROUND_IMAGE")',
+        });
+    });
+    it('should set backgroundImage to undefined if not passed', async () => {
+        (<FastifyRequestWithParams<UpdatePostParams>>requestMockWithParams).body = {
+            ...new TestUpdatePostPayload(),
+            backgroundImage: null,
+        };
+
+        mockFindOne.mockImplementation(() => new TestPost());
+        const returnValue = await handler.call(
+            <FastifyInstance>(<unknown>mockFastifyInstance),
+            <FastifyRequestWithParams<UpdatePostParams>>requestMockWithParams,
+            replyMock
+        );
+        expect(mockFindOne).toHaveBeenCalled();
+
+        expect(returnValue).toEqual({
+            ...new TestPost().toResultsPost(),
+            backgroundImage: undefined,
+        });
     });
     it('should catch errors when trying to update post', async () => {
         const thrownError = new Error('TEST_ERROR');
