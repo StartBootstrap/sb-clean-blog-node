@@ -56,6 +56,13 @@ Common postgres commands can be found in: [NOTES/POSTGRES.md](NOTES/POSTGRES.md)
 
 ## Quick Start
 
+### Download the repo
+
+```bash
+git clone git@github.com:startbootstrap/sb-clean-blog-node.git
+cd sb-clean-blog-node
+```
+
 ### 1) Set up `.env`
 
 ```bash
@@ -91,13 +98,14 @@ This command:
 npm run db:reset # See the next command if you have issues with this command
 ```
 
-_Note: If you receive an error `function uuid_generate_v4() does not exist` then run the command:_
+#### If you receive an error `function uuid_generate_v4() does not exist` then run the command:
 
 ```bash
 npm run db:uuid
 ```
 
 This will add the extension `uuid-ossp` to the template1 databse.
+
 You will then need to run `npm run db:reset` again
 
 ### 4) Start the server
@@ -108,6 +116,10 @@ npm start
 
 You should be able to hit <http://localhost:8200/api/latest/health>
 
+### 5) Run the front end (sb-clean-blog-angular)
+
+Follow the README at [sb-clean-blog-angular](https://github.com/StartBootstrap/sb-clean-blog-angular)
+
 ## Tests
 
 Unit Tests are named `*.test.ts` and are located in the same directory as the file they are testing.
@@ -116,8 +128,9 @@ Unit Tests are named `*.test.ts` and are located in the same directory as the fi
 
 ```bash
 npm run test
+
+# To keep the test runner going as you devleop tests use:
 npm run test:watch
-npm run test:watch-all
 ```
 
 To run a specific test, you can do:
@@ -135,10 +148,38 @@ npm run serve:coverage
 ## Migrations
 
 ```bash
+# typeOrm cli help
 npm run cli -- -h
+
+# Create a migration
 npm run db:migration:generate -- -n my-migration
+
+# Run migrations 
 npm run db:migration:run
 ```
+
+## Docker
+
+SB Clean Blog Node comes with a Dockerfile and build scripts.
+
+You can get Docker [here](https://www.docker.com/get-started)
+
+```bash
+# Be sure to build the app first
+npm run build
+
+# Then build the docker image
+npm run docker:build
+
+# Then run the image
+npm run docker:run
+```
+
+If you intend to use this in production, you will need to modify the run script:
+`scripts/docker/docker-run.ts` to change the .env variables to point to your production postgres instance.
+
+You will also need to develop a way to initialize and run migrations on the production database.
+One option is to set you local .env to temporarily point to your production database and run the commands locally.
 
 ## Style
 
