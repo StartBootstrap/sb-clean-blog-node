@@ -29,6 +29,10 @@ export const handler: fastify.RequestHandlerWithParams<UpdatePostParams> = async
     const postRepository = getConnection().getRepository(Post);
     const foundPost = await findPost(request, updatePostParams.id);
 
+    updatePostPayload.backgroundImage = updatePostPayload.backgroundImage
+        ? `url("${updatePostPayload.backgroundImage}")`
+        : undefined;
+
     Object.assign(foundPost, updatePostPayload);
 
     try {
