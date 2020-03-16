@@ -4,7 +4,7 @@
 
 ## Links
 
-[Click here for the frontend.](https://github.com/StartBootstrap/sb-clean-blog-node)
+[Click here for the frontend.](https://github.com/StartBootstrap/sb-clean-blog-angular)
 Built with Angular
 
 [Click here to view Angular code coverage](https://sb-clean-blog.startbootstrap.com/coverage/sb-clean-blog-angular/index.html)
