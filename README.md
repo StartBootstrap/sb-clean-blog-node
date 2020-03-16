@@ -2,6 +2,16 @@
 
 [![Build Status](https://travis-ci.org/StartBootstrap/sb-clean-blog-node.svg?branch=master)](https://travis-ci.org/StartBootstrap/sb-clean-blog-node)
 
+## Links
+
+[Click here for the frontend.](https://github.com/StartBootstrap/sb-clean-blog-node)
+Built with Angular
+
+[Click here to view Angular code coverage](https://sb-clean-blog.startbootstrap.com/coverage/sb-clean-blog-angular/index.html)
+
+[Click here to view Node code coverage](https://sb-clean-blog.startbootstrap.com/coverage/sb-clean-blog-node/index.html)
+
+
 ## Prerequisites
 
 Before you begin, make sure your development environment inlcudes the following technologies:
