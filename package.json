@@ -90,6 +90,6 @@
         "pg": "7.18.1",
         "pino-pretty": "3.6.0",
         "reflect-metadata": "0.1.13",
-        "typeorm": "0.2.22"
+        "typeorm": "0.2.25"
     }
 }
